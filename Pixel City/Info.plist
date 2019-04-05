@@ -31,8 +31,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -41,5 +39,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This App Requires Your Location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This App Requires Your Location.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This App Requires Your Location.</string>
 </dict>
 </plist>
