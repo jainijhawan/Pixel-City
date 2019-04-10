@@ -31,6 +31,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     var collectionView : UICollectionView?
     
     var imageUrlArray = [String]()
+    var imageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +87,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     func addProgressLbl(){
         progressLbl = UILabel()
         progressLbl?.frame = CGRect(x: (screenSize.width / 2) - 100, y: 175, width: 200, height: 40)
-        progressLbl?.font = UIFont(name: "Avenier Next", size: 18)
+        progressLbl?.font = UIFont(name: "Avenier Next", size: 14)
         progressLbl?.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         progressLbl?.textAlignment = .center
         collectionView?.addSubview(progressLbl!)
@@ -101,9 +102,11 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     
     
     @objc func animateViewDown(){
+        cancelAllSessions()
         pullViewHeightConstraint.constant = 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
+            
         }
     }
     
@@ -139,6 +142,7 @@ extension MapVC : MKMapViewDelegate{
         removePin()
         removeSpinner()
         removeProgressLbl()
+        cancelAllSessions()
         
         animateViewUp()
         addSwipe()
@@ -153,8 +157,15 @@ extension MapVC : MKMapViewDelegate{
         
         let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
-        retrieveUrls(forAnnotations: annotation) { (true) in
-            
+        retrieveUrls(forAnnotations: annotation) { (finished) in
+            if finished {
+                self.retrieveImages(handeler: { (finished) in
+                    if finished{
+                        self.removeSpinner()
+                        self.removeProgressLbl()
+                    }
+                })
+            }
         }
     }
     
@@ -175,6 +186,30 @@ extension MapVC : MKMapViewDelegate{
                 self.imageUrlArray.append(postUrl)
             }
             handeler(true)
+        }
+    }
+    
+    func retrieveImages(handeler: @escaping(_ status : Bool)-> ()){
+        imageArray = []
+        
+        for url in imageUrlArray{
+            Alamofire.request(url).responseImage { (response) in
+                guard let image = response.result.value else {return}
+                self.imageArray.append(image)
+                self.progressLbl?.text = "\(self.imageArray.count)/40 Images Downloaded"
+                
+                if self.imageArray.count == self.imageUrlArray.count{
+                    handeler(true)
+                }
+            }
+        }
+        
+    }
+    
+    func cancelAllSessions(){
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadDataz, downloadData) in
+            sessionDataTask.forEach({ $0.cancel() })
+            downloadData.forEach({ $0.cancel() })
         }
     }
     
