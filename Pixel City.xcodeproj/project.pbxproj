@@ -16,6 +16,7 @@
 		F71D9500225682C20001B5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71D94FF225682C20001B5F5 /* Assets.xcassets */; };
 		F71D9503225682C20001B5F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71D9501225682C20001B5F5 /* LaunchScreen.storyboard */; };
 		F79046C32257D34300606A65 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79046C22257D34300606A65 /* DroppablePin.swift */; };
+		F7C3ACEF2265B9F200DFBE8D /* PopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C3ACEE2265B9F200DFBE8D /* PopVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F71D9502225682C20001B5F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F71D9504225682C20001B5F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F79046C22257D34300606A65 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
+		F7C3ACEE2265B9F200DFBE8D /* PopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				F71D94FA225682C10001B5F5 /* MapVC.swift */,
+				F7C3ACEE2265B9F200DFBE8D /* PopVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C3ACEF2265B9F200DFBE8D /* PopVC.swift in Sources */,
 				F705AEA4225B1D1E00B5734C /* Constants.swift in Sources */,
 				F7067272225A844F006DE1B9 /* PhotoCell.swift in Sources */,
 				F71D94FB225682C10001B5F5 /* MapVC.swift in Sources */,
