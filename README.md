@@ -2,7 +2,7 @@
 
 An iOS app where users can browse Flickr photos based off map locations. The App uses MapKit and Alamofire to make requests to the Flickr API. The App shows 40 Images located near to 1000 meters of radius of the pin dropped on the Map.
 
-##Screenshots
+## Screenshots
 
 | Screenshot 1 | Screenshot 2 |
 |:----------------------:|:------------:|
